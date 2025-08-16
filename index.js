@@ -95,7 +95,7 @@ addEventListener("fetch", async event => {
                 });
 
                 const response = await fetch(targetUrl, newRequest);
-                const responseHeaders = new Headers(response.headers);
+                let responseHeaders = new Headers(response.headers); // Cambiado a 'let'
                 const exposedHeaders = [];
                 const allResponseHeaders = {};
                 for (const [key, value] of response.headers.entries()) {
@@ -103,7 +103,7 @@ addEventListener("fetch", async event => {
                     allResponseHeaders[key] = value;
                 }
                 exposedHeaders.push("cors-received-headers");
-                responseHeaders = setupCORSHeaders(responseHeaders);
+                responseHeaders = setupCORSHeaders(responseHeaders); // Ahora es válido
 
                 responseHeaders.set("Access-Control-Expose-Headers", exposedHeaders.join(","));
                 responseHeaders.set("cors-received-headers", JSON.stringify(allResponseHeaders));
@@ -118,8 +118,8 @@ addEventListener("fetch", async event => {
                 return new Response(responseBody, responseInit);
 
             } else {
-                let responseHeaders = new Headers();
-                responseHeaders = setupCORSHeaders(responseHeaders);  // Ahora es válido.
+                let responseHeaders = new Headers(); // Cambiado a 'let'
+                responseHeaders = setupCORSHeaders(responseHeaders); // Ahora es válido
 
                 let country = false;
                 let colo = false;
@@ -129,8 +129,8 @@ addEventListener("fetch", async event => {
                 }
 
                 return new Response(
-                    "No hay  nada Aca" +
-                    "" +
+                    "CLOUDFLARE-CORS-ANYWHERE\n\n" +
+                    "Source:\nhttps://github.com/Zibri/cloudflare-cors-anywhere\n\n" +
                     "Usage:\n" +
                     originUrl.origin + "/?uri\n\n" +
                     "Donate:\nhttps://paypal.me/Zibri/5\n\n" +
