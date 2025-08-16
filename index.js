@@ -118,8 +118,8 @@ addEventListener("fetch", async event => {
                 return new Response(responseBody, responseInit);
 
             } else {
-                const responseHeaders = new Headers();
-                responseHeaders = setupCORSHeaders(responseHeaders);
+                let responseHeaders = new Headers();
+                responseHeaders = setupCORSHeaders(responseHeaders);  // Ahora es válido.
 
                 let country = false;
                 let colo = false;
@@ -129,8 +129,8 @@ addEventListener("fetch", async event => {
                 }
 
                 return new Response(
-                    "CLOUDFLARE-CORS-ANYWHERE\n\n" +
-                    "Source:\nhttps://github.com/Zibri/cloudflare-cors-anywhere\n\n" +
+                    "No hay  nada Aca" +
+                    "" +
                     "Usage:\n" +
                     originUrl.origin + "/?uri\n\n" +
                     "Donate:\nhttps://paypal.me/Zibri/5\n\n" +
